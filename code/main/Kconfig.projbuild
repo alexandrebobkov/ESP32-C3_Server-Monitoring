@@ -1,0 +1,46 @@
+menu "Rainmaker ESP32C3 Switch"
+
+    config EXAMPLE_BOARD_BUTTON_GPIO
+        int "Boot Button GPIO"
+        default 9 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C6
+        default 0
+        help
+            GPIO number on which the "Boot" button is connected. This is generally used
+            by the application for custom operations like toggling states, resetting to defaults, etc.
+
+    config EXAMPLE_ENABLE_TEST_NOTIFICATIONS
+        bool "Test Notifications"
+        default n
+        help
+            Enable this option to test mobile push notifications. When enabled, turning on the switch using
+            push button will trigger a parameter notification {"Switch":{"Power":true}} and turning off will
+            trigger an alert "Switch was turned off".
+
+    config EXAMPLE_OUTPUT_GPIO
+        int "Output GPIO"
+        default 19
+        help
+            This is an output GPIO that will be connected to a relay or other driver circuit in most cases.
+            If the power changes, this GPIO output level will also change.
+
+    config SWITCH_LED_1
+        int "On-board LED-1"
+        default 12
+        help
+            This is an output GPIO that is connected to an on-board LED located on the right side of the board
+            If the power changes, this GPIO output level will also change.
+
+    config SWITCH_LED_2
+        int "On-board LED-2"
+        default 13
+        help
+            This is an output GPIO that is connected to an on-board LED located on the right side of the board
+            If the power changes, this GPIO output level will also change.
+
+    config LIGHT_SENSOR
+        int "Light Sensor GPIO"
+        default 1
+        help
+            This is an input GPIO that is connected to the ambient light sensor.
+
+endmenu
